@@ -4,7 +4,7 @@
 #include <stdbool.h>
 #include <unistd.h>
 
-#include "log.h"
+#include "log4embedded.h"
 
 // Define ANSI colors for the serial console
 #define ANSI_COLOR_RED              "\x1b[31m"

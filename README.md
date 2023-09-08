@@ -54,11 +54,12 @@ This library prints colored log messages through the standard output by default.
 	
 	Depending on how important is the event to be logged, you will be calling any of these functions accordingly. However, they will respect the log level previously set in runtime (or the default one). So, e.g.: "log_print_info" will print nothing if selected log level is "WARNING".
 
-### Other considerations
+## Recommendations
 	
 This library is NOT thread safe, as it's assumed the configuration will be set right at the beginning of the execution flow. If you implement a multi-threaded application, just call the configuration functions prior to start creating threads.
-Anyway, a couple of examples shall be provided with the release.	
+A couple of examples shall be provided with the release, regardless.
 
+Five different print functions are provided to meet your needs and make the API more straightforward with self-explanatory names, but since this would be a 3rd party library for any project, it's strongly recommended to wrap this API with an extra layer of yours which could, at the same time, calls any of the 5 functions from just a custom one, with an extra argument that holds the log hierarchy value (CRIT, ERR, WARN, INFO, DBG) to establish the criticality of the log message.
 
 ## Getting Started
 

@@ -2,7 +2,6 @@
 #include <stdarg.h>
 #include <time.h>
 #include <stdbool.h>
-#include <unistd.h>
 
 #include "log4embedded.h"
 

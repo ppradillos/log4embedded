@@ -74,10 +74,10 @@ To integrate **log4embedded** into your project, follow these simple steps:
 
 At this early stage, a simple Makefile is provided to build the library straight away, but it's recommended to modify it localy to fit your needs. A CMakeList shall replace the Makefile in the future.
 
-	```bash
+   ```bash
 	cd log4embedded
 	make
-	```
+   ```
 	
 3. Integrate into Your Project:
 

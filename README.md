@@ -4,7 +4,7 @@
 
 ## Overview
 
-**log4embedded** is a lightweight, high-performance logging library crafted for embedded systems and servers, written in C/C++. This library stands out for its speed, colorful output, and ease of integration. With log4embedded, you can efficiently manage logs in your embedded projects while adding a touch of color to make debugging more accessible.
+**log4embedded** is a lightweight, high-performance logging library crafted for embedded systems and servers, written in C. This library stands out for its speed, colorful output, and ease of integration. With log4embedded, you can efficiently manage logs in your embedded projects while adding a touch of color to make debugging more accessible.
 
 ## Motivations behind this project
 

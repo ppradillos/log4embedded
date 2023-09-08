@@ -16,8 +16,9 @@ OBJ_DIR = obj
 LIB_DIR = lib
 
 # Debug and release compiler flags
-DEBUG_CFLAGS = -Wall -shared -fPIC -I$(HDR_DIR)/ -g -O0 -DDEBUG 
-RELEASE_CFLAGS = -Wall -shared -fPIC -I$(HDR_DIR)/ -s -O3
+COMMON_C_FLAGS = -Wall -Wextra -Werror -shared -fPIC -fdiagnostics-color -pedantic -I$(HDR_DIR)/
+DEBUG_CFLAGS = $(COMMON_C_FLAGS) -g -O0 -DDEBUG 
+RELEASE_CFLAGS = $(COMMON_C_FLAGS) -s -O3
 
 # By default, build the release version
 all: release
@@ -33,7 +34,7 @@ release: $(LIB_DIR)/$(LIB_NAME)
 # mkdir /lib directory if does not exist
 $(LIB_DIR)/$(LIB_NAME): $(OBJ_DIR)/$(SRC:.c=.o)
 	@mkdir -p $(@D)
-	$(CC) $(CFLAGS) -Wl,-soname,$(LIB_DIR)/$(LIB_NAME).$(LIB_VERSION) -o $@ $^ -lc -lpthread
+	$(CC) $(CFLAGS) -Wl,-soname,$(LIB_DIR)/$(LIB_NAME).$(LIB_VERSION) -o $@ $^ -lc
 
 # mkdir /obj directory if does not exist
 $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c $(HDR_DIR)/$(HDR)

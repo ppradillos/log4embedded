@@ -1,7 +1,7 @@
 /**
  * @file    log.h
  * @author  Pablo Pradillos (ppradillos_dev@proton.me)
- * @brief   Lightweight library to manage log messages for any application. 
+ * @brief   Lightweight, fast-performance library to manage colorful log messages for any application. 
  *          
  *          It adds an extra layer on top of the standard library's printf, such as:
  *              - 6 possible log levels: from one totally restrictive (no log output) to a 
@@ -47,6 +47,8 @@ typedef enum {
     LOG_MSG_DBG         // log every print call made out of this API.
 } LOG_MSG_CATEGORY;
 
+
+/***********    Configuration operations    ************/
 
 /**
  * @brief   Set the Log Level for the entire application, according
@@ -117,6 +119,9 @@ void log_enable_colors();
  * 
  */
 void log_disable_colors();
+
+
+/***********    Log generation operations    ************/
 
 /**
  * @brief   Print critical messages if selected log level allows it.

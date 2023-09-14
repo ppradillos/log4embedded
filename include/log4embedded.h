@@ -124,35 +124,41 @@ void log_disable_colors();
 /***********    Log generation operations    ************/
 
 /**
- * @brief   Print critical messages if selected log level allows it.
+ * @brief   Print critical messages if selected log level is >= LOG_MSG_CRIT (default level is LOG_MSG_INFO).
+ *          See LOG_MSG_CATEGORY enum for more details.
  * 
  * @param fmt 
  */
 void log_print_critical(const char* fmt, ...);
 
 /**
- * @brief   Print error messages if selected log level allows it.
+ * @brief   Print error messages if selected log level is >= LOG_MSG_ERR (default level is LOG_MSG_INFO).
+ *          See LOG_MSG_CATEGORY enum for more details.
  * 
  * @param fmt 
  */
 void log_print_error(const char* fmt, ...);
 
 /**
- * @brief   Print warning messages if selected log level allows it.
+ * @brief   Print warning messages if selected log level is >= LOG_MSG_WARN (default level is LOG_MSG_INFO).
+ *          See LOG_MSG_CATEGORY enum for more details.
  * 
  * @param fmt 
  */
 void log_print_warning(const char* fmt, ...);
 
 /**
- * @brief   Print info messages if selected log level allows it.
+ * @brief   Print info messages if selected log level is >= LOG_MSG_INFO (default level is LOG_MSG_INFO).
+ *          See LOG_MSG_CATEGORY enum for more details.
  * 
  * @param fmt 
  */
 void log_print_info(const char* fmt, ...);
 
 /**
- * @brief   Print debug messages if selected log level allows it.
+ * @brief   Print debug messages if selected log level is >= LOG_MSG_DBG (default level is LOG_MSG_INFO, 
+ *          so this log messages will not be printed or logged by default).
+ *          See LOG_MSG_CATEGORY enum for more details.
  * 
  * @param fmt 
  */

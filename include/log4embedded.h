@@ -72,7 +72,12 @@ LOG_MSG_CATEGORY log_get_level();
 
 /**
  * @brief   Set the log file where logs shall be written. Filepath size must not exceed 256 bytes.
- *          If the log file does not exist yet, then it will be created.
+ *          If the log file does not exist yet, then it will be created, AS LONG AS the directories
+ *          meant to store the log file already exist. 
+ * 
+ *          Example: you set "log/log.txt" as your log file. If:
+ *              - "log" folder exists already, then "log.txt" shall be created if it does not exist previously
+ *              - "log" folder does not exist, the "log.txt" file shall NOT be created. Log output re-directed to stdout.
  * 
  *          Please, note that using a log file via this function call DISABLES colors by default.
  *          Therefore a plain text file shall be generated, suitable for typical text editors.
@@ -80,7 +85,7 @@ LOG_MSG_CATEGORY log_get_level();
  *          If a log file with colored text is desirable to check it via command line tools rather than
  *          text editors, please call 'log_set_file_with_color_text' instead.
  * 
- *          In case no log file specified, stdout shall be assumed as log output.
+ *          In case no log file specified, or log file cannot be opened/created, stdout shall be assumed as log output.
  * 
  * @param filepath 
  * @param filepath_size

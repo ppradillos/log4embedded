@@ -211,8 +211,7 @@ void log_set_file(const char* filepath, size_t filepath_size)
         log_atts.log_file_name[0] = NULL_CHAR;
         snprintf(log_atts.log_file_name, filepath_size, "%s", filepath);
         log_atts.log_file_size = filepath_size;
-        log_disable_colors();
-        
+        log_disable_colors();  
     }
     else
         log_print_warning("Given log file name is not valid. Logs shall be printed to the stdout.\n");

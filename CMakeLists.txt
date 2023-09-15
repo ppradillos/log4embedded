@@ -72,3 +72,8 @@ install(TARGETS ${CMAKE_PROJECT_NAME}
                 PUBLIC_HEADER DESTINATION ${CMAKE_INSTALL_PREFIX}/${HDR_DIR})
 
 target_link_libraries (${PROJECT_NAME} PRIVATE -lc)
+
+#Add examples
+if (BUILD_EXAMPLES)
+  add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/examples ${CMAKE_CURRENT_BINARY_DIR}/examples)
+endif()

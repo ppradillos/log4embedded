@@ -101,7 +101,7 @@ It's better if you create your own script to run all these commands in a single 
  	* ARM Linux
  	* AARCH64 Linux
 
- - In the installation folder you may find:
+ - In the installation folder, previously set by *CMAKE_INSTALL_PREFIX*, you may find:
 	* The header file
 	* The binary file, as dynamic library
 	* The executable files of the examples, in case you built them.

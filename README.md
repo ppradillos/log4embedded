@@ -68,13 +68,14 @@ Five different print functions are provided to meet your needs and make the API 
 
 To integrate **log4embedded** into your project, follow these simple steps:
 
-1. Clone the repository:
+1. **Clone the repository**:
 
    ```bash
    git clone https://github.com/ppradillos/log4embedded.git
    ```
+<br>
 
-2. Build the Library:
+2. **Build the Library**:
 
 The goal of this library is to be cross-build, so it can run in many embedded platforms. For that reason, this is a CMake project.
 For those who are new to CMake, this is a Makefile generator which lets you configure your project based on your compiler, platform and CPU architecture.
@@ -89,33 +90,43 @@ To build the project, you first run CMake tool with some arguments to generate t
    ```
 It's better if you create your own script to run all these commands in a single command.
 
-From the example above, we identify several arguments:
-    - B_build: This is the build environment for the CMake project
-	- DCMAKE_INSTALL_PREFIX: Where the header, binary and examples will be installed after running the 'make install'     command
-	- DCMAKE_BUILD_TYPE: build type, either Debug or Release. Release is the default option.
-	- DCMAKE_TOOLCHAIN_FILE: This is a file for custom settings for the compiler, so that the root CMakeLists.txt can stay more generic.
-			A set of toolchain files are provided in the [cmake_build_utilities](https://github.com/ppradillos/log4embedded/tree/master/cmake_build_utilities) folder.
+- From the example above, we identify several arguments:
+	* B_build: This is the build environment for the CMake project
+	* DCMAKE_INSTALL_PREFIX: Where the header, binary and examples will be installed after running the 'make install' command
+	* DCMAKE_BUILD_TYPE: build type, either Debug or Release. Release is the default option
+	* DCMAKE_TOOLCHAIN_FILE: This is a file for custom settings for the compiler, so that the root CMakeLists.txt can stay more generic. 
+ 
+- A set of toolchain files are provided in the [cmake_build_utilities](https://github.com/ppradillos/log4embedded/tree/master/cmake_build_utilities) folder for:
+ 	* x86_64 Linux
+ 	* ARM Linux
+ 	* AARCH64 Linux
+
+ - In the installation folder you may find:
+	* The header file
+	* The binary file, as dynamic library
+	* The executable files of the examples, in case you built them.
 			
-Examples:
-	A set of [examples](https://github.com/ppradillos/log4embedded/tree/master/examples) are provided in this project. If you want to build them, add the option
-	- DBUILD_EXAMPLES=1 to CMake.
+- Examples:
+	* A set of [examples](https://github.com/ppradillos/log4embedded/tree/master/examples) are provided in this project. If you want to build them, add the option
+	-DBUILD_EXAMPLES=1 to CMake.
 	
-As the library will not install in the standard directories where dynamic loaders look for, in Linux systems, you must either install the library manually in e.g.: '/usr/local/lib' or try LD_PRELOAD magic.
-	
-In the installation folder you may find:
-	- The header file
-	- The binary file, as dynamic library
-	- The executable files of the examples, in case you built them.
-	
-3. Integrate into Your Project:
+As the library will not install in the standard directories where dynamic loaders look for, in Linux systems, you must either install the library manually in e.g.: '/usr/local/lib' or try LD_PRELOAD magic.	
+
+<br>
+
+3. **Integrate into Your Project**:
 
 Only thing you need after building the library is to take the content in the installation folder, include the appropiate header files into your project, and finally link the dynamic library against your executable/library.
 
-4. Begin Logging:
+<br>
+
+4. **Begin Logging**:
 
 Use the easy-to-use API to add log statements to your code. Customize log levels and colors as needed.
 
-5. Enjoy Enhanced Debugging:
+<br>
+
+5. **Enjoy Enhanced Debugging**:
 
 With **log4embedded**, you'll have colorful, performance-optimized logs to help you debug your embedded system.
 

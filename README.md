@@ -42,6 +42,9 @@ This library prints colored log messages through the standard output by default.
 	- DEBUG
 	
 - Set a log file with no colors at all (default option for log files) or with the extra escape sequences for colors just in case you still want to check the log file in a terminal, e.g.: using the "tail -f" command.
+- 
+  As a remark, to make this library 100% compatible with the standard and avoid dependencies with any OS, if you set a log file path which directories do not exist yet, then the log file SHALL NOT be created. On the other hand, if all directories
+  to store the log file already exist, but the log file is the only one missing, the log file shall be created with no problem.
 
 ### Log generation
 
@@ -73,16 +76,40 @@ To integrate **log4embedded** into your project, follow these simple steps:
 
 2. Build the Library:
 
-At this early stage, a simple Makefile is provided to build the library straight away, but it's recommended to modify it localy to fit your needs. A CMakeList shall replace the Makefile in the future.
+The goal of this library is to be cross-build, so it can run in many embedded platforms. For that reason, this is a CMake project.
+For those who are new to CMake, this is a Makefile generator which lets you configure your project based on your compiler, platform and CPU architecture.
+
+To build the project, you first run CMake tool with some arguments to generate the needed Makefiles, navigate to the '_build' folder CMake has just created, and then run 'make install'. It all can be made on the Command Line Interface. See this example:
 
    ```bash
 	cd log4embedded
-	make
+	cmake -B_build/ -DCMAKE_INSTALL_PREFIX=./_build/_install -DCMAKE_BUILD_TYPE=Release -DCMAKE_TOOLCHAIN_FILE=cmake_build_utilities/toolchain-file-linux-x86_64.cmake
+	cd _build
+	make install
    ```
+It's better if you create your own script to run all these commands in a single command.
+
+From the example above, we identify several arguments:
+    - B_build: This is the build environment for the CMake project
+	- DCMAKE_INSTALL_PREFIX: Where the header, binary and examples will be installed after running the 'make install'     command
+	- DCMAKE_BUILD_TYPE: build type, either Debug or Release. Release is the default option.
+	- DCMAKE_TOOLCHAIN_FILE: This is a file for custom settings for the compiler, so that the root CMakeLists.txt can stay more generic.
+			A set of toolchain files are provided in the [cmake_build_utilities](https://github.com/ppradillos/log4embedded/tree/master/cmake_build_utilities) folder.
+			
+Examples:
+	A set of [examples](https://github.com/ppradillos/log4embedded/tree/master/examples) are provided in this project. If you want to build them, add the option
+	- DBUILD_EXAMPLES=1 to CMake.
+	
+As the library will not install in the standard directories where dynamic loaders look for, in Linux systems, you must either install the library manually in e.g.: '/usr/local/lib' or try LD_PRELOAD magic.
+	
+In the installation folder you may find:
+	- The header file
+	- The binary file, as dynamic library
+	- The executable files of the examples, in case you built them.
 	
 3. Integrate into Your Project:
 
-Link the library with your project and include the appropriate header files. Refer to the documentation for detailed instructions.
+Only thing you need after building the library is to take the content in the installation folder, include the appropiate header files into your project, and finally link the dynamic library against your executable/library.
 
 4. Begin Logging:
 

@@ -1,9 +1,10 @@
 # Specify the target platform and architecture
-set(CMAKE_SYSTEM_NAME Linux)
+set(CMAKE_SYSTEM_NAME linux)
 set(CMAKE_SYSTEM_PROCESSOR x86_64)
 
 # Specify the C compiler
 set(CMAKE_C_COMPILER gcc)
+set(CMAKE_CXX_COMPILER g++)
 
 # You can set additional compiler flags here if needed
 # set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} ...")

@@ -75,7 +75,7 @@ To integrate **log4embedded** into your project, follow these simple steps:
    ```
 <br>
 
-2. **Build the Library**:
+2. **Build the log4embedded library**:
 
 The goal of this library is to be cross-build, so it can run in many embedded platforms. For that reason, this is a CMake project.
 For those who are new to CMake, this is a Makefile generator which lets you configure your project based on your compiler, platform and CPU architecture.
@@ -84,7 +84,7 @@ To build the project, you first run CMake tool with some arguments to generate t
 
    ```bash
 	cd log4embedded
-	cmake -B_build/ -DCMAKE_INSTALL_PREFIX=./_build/_install -DCMAKE_BUILD_TYPE=Release -DCMAKE_TOOLCHAIN_FILE=cmake_build_utilities/toolchain-file-linux-x86_64.cmake
+	cmake -B_build/ -DCMAKE_INSTALL_PREFIX=./package -DCMAKE_BUILD_TYPE=Release -DCMAKE_TOOLCHAIN_FILE=cmake_build_utilities/toolchain-file-linux-x86_64.cmake
 	cd _build
 	make install
    ```
@@ -92,9 +92,9 @@ It's better if you create your own script to run all these commands in a single 
 
 - From the example above, we identify several arguments:
 	* B_build: This is the build environment for the CMake project
-	* DCMAKE_INSTALL_PREFIX: Where the header, binary and examples will be installed after running the 'make install' command
-	* DCMAKE_BUILD_TYPE: build type, either Debug or Release. Release is the default option
-	* DCMAKE_TOOLCHAIN_FILE: This is a file for custom settings for the compiler, so that the root CMakeLists.txt can stay more generic. 
+	* CMAKE_INSTALL_PREFIX: Where the header, binary and examples will be installed after running the 'make install' command. We highly recommend to set always a custom installation path, like "package/"
+	* CMAKE_BUILD_TYPE: build type, either Debug or Release. Release is the default option
+	* CMAKE_TOOLCHAIN_FILE: This is a file for custom settings for the compiler, so that the root CMakeLists.txt can stay more generic. 
  
 - A set of toolchain files are provided in the [cmake_build_utilities](https://github.com/ppradillos/log4embedded/tree/master/cmake_build_utilities) folder for:
  	* x86_64 Linux

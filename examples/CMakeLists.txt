@@ -21,4 +21,4 @@ target_link_libraries(set_log_file PRIVATE ${LIBRARY_NAME}.so)
 target_link_libraries(set_log_level PRIVATE ${LIBRARY_NAME}.so)
 
 install(TARGETS default_behaviour set_log_file set_log_level
-        DESTINATION ${CMAKE_INSTALL_PREFIX}/${CMAKE_SYSTEM_NAME}_${CMAKE_SYSTEM_PROCESSOR}_package/examples)
+        DESTINATION ${CMAKE_INSTALL_PREFIX}/${CMAKE_SYSTEM_NAME}-${CMAKE_SYSTEM_PROCESSOR}-package/examples)

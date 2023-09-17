@@ -93,7 +93,7 @@ endif()
 
 # Configure log4embedded package
 set(CPACK_PACKAGE_NAME ${PROJECT_NAME})
-set(CPACK_PACKAGE_VERSION "1.0.0")
+set(CPACK_PACKAGE_VERSION "1.0")
 set(CPACK_PACKAGE_DIRECTORY ${CMAKE_INSTALL_PREFIX})
 set(CPACK_GENERATOR "TGZ")
 set(CPACK_PACKAGE_DESCRIPTION "Fast-performance, colorful log library for embedded systems")

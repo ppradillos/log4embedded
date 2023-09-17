@@ -109,7 +109,7 @@ In case you want to run the build process at your own, you first run CMake tool 
 	cd log4embedded
 	cmake -B_build/ -DCMAKE_INSTALL_PREFIX=./package -DCMAKE_BUILD_TYPE=Release -DCMAKE_TOOLCHAIN_FILE=cmake_build_utilities/toolchain-file-linux-x86_64.cmake
 	cd _build
-	make install
+	make package
    ```
 It's better if you create your own script to run all these commands in a single command.
 

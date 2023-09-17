@@ -96,7 +96,7 @@ Just pick one of them to run the build process, depending on the platform.
 	
 This package is all you need to integrate the log4embedded as dynamic library in your project. Take it to where you need it.
 
-- Please, note this scripts depend heaviliy in a set of toolchain files that are provided in the [cmake_build_utilities](https://github.com/ppradillos/log4embedded/tree/master/cmake_build_utilities) folder:
+- Please, note these scripts depend heaviliy in a set of toolchain files that are provided in the [cmake_build_utilities](https://github.com/ppradillos/log4embedded/tree/master/cmake_build_utilities) folder. Each of them for a different platform and architecture. Asuming GCC:
 	* x86_64 Linux
  	* ARM Linux
  	* AARCH64 Linux

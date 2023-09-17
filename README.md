@@ -80,7 +80,28 @@ To integrate **log4embedded** into your project, follow these simple steps:
 The goal of this library is to be cross-build, so it can run in many embedded platforms. For that reason, this is a CMake project.
 For those who are new to CMake, this is a Makefile generator which lets you configure your project based on your compiler, platform and CPU architecture.
 
-To build the project, you first run CMake tool with some arguments to generate the needed Makefiles, navigate to the '_build' folder CMake has just created, and then run 'make install'. It all can be made on the Command Line Interface. See this example:
+- To make it easier to everybody who wants to compile this project from source, there are 3 scripts in the root folder that make the build and packaging. Those are:
+	* build_linux-x86_64.sh: for Linux x64 targets
+	* build_linux-arm.sh: for Linux ARM targets
+	* build_linux-x86_64.sh: for Linu aarch64 targets
+	
+- Their purpose is to build the sources, and then generate a tarball package within the newly created 'package/' folder, which itself will contain:
+	* The header file
+	* The binary file, as dynamic library
+	* The executable and source files of the examples, in case you built them.
+	* License file
+	* This README file
+	
+This package is all you need to integrate the log4embedded as dynamic library in your project. Take it to where you need it.
+
+- Please, note this scripts depend heaviliy in a set of toolchain files that are provided in the [cmake_build_utilities](https://github.com/ppradillos/log4embedded/tree/master/cmake_build_utilities) folder:
+	* x86_64 Linux
+ 	* ARM Linux
+ 	* AARCH64 Linux
+	
+Therefore, in case you want to customize your toolchain settings or the scripts ran into a build error, please modify these toolchain files locally to fit your local setup.
+
+In case you want to run the build process at your own, you first run CMake tool with some arguments to generate the needed Makefiles, then navigate to the build folder you have selected (the folder where the CMakeLists.txt stands is the build folder by default, that's why is strongly recommended to select the build folder with '-B' option, followed by NO spaces), and then run 'make package' to get your package in the folder you assigned to CMAKE_INSTALL_PREFIX. It all can be made on the Command Line Interface. See this example:
 
    ```bash
 	cd log4embedded
@@ -92,19 +113,9 @@ It's better if you create your own script to run all these commands in a single 
 
 - From the example above, we identify several arguments:
 	* B_build: This is the build environment for the CMake project
-	* CMAKE_INSTALL_PREFIX: Where the header, binary and examples will be installed after running the 'make install' command. We highly recommend to set always a custom installation path, like "package/"
+	* CMAKE_INSTALL_PREFIX: Where the header, binary, examples, license and README will be installed after running the 'make package' command. We highly recommend to set always a custom installation path with no superuser rights, like "package/"
 	* CMAKE_BUILD_TYPE: build type, either Debug or Release. Release is the default option
 	* CMAKE_TOOLCHAIN_FILE: This is a file for custom settings for the compiler, so that the root CMakeLists.txt can stay more generic. 
- 
-- A set of toolchain files are provided in the [cmake_build_utilities](https://github.com/ppradillos/log4embedded/tree/master/cmake_build_utilities) folder for:
- 	* x86_64 Linux
- 	* ARM Linux
- 	* AARCH64 Linux
-
- - In the installation folder, previously set by *CMAKE_INSTALL_PREFIX*, you may find:
-	* The header file
-	* The binary file, as dynamic library
-	* The executable files of the examples, in case you built them.
 			
 - Examples:
 	* A set of [examples](https://github.com/ppradillos/log4embedded/tree/master/examples) are provided in this project. If you want to build them, add the option

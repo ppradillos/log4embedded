@@ -80,10 +80,12 @@ To integrate **log4embedded** into your project, follow these simple steps:
 The goal of this library is to be cross-build, so it can run in many embedded platforms. For that reason, this is a CMake project.
 For those who are new to CMake, this is a Makefile generator which lets you configure your project based on your compiler, platform and CPU architecture.
 
-- To make it easier to everybody who wants to compile this project from source, there are 3 scripts in the root folder that make the build and packaging. Those are:
+- To make it easier to everybody who wants to compile this project from source, there are 3 scripts in the root folder that make the build and packaging directly. Those are:
 	* build_linux-x86_64.sh: for Linux x64 targets
 	* build_linux-arm.sh: for Linux ARM targets
 	* build_linux-x86_64.sh: for Linu aarch64 targets
+	
+Just pick one of them to run the build process, depending on the platform.
 	
 - Their purpose is to build the sources, and then generate a tarball package within the newly created 'package/' folder, which itself will contain:
 	* The header file

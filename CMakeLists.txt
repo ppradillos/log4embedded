@@ -62,14 +62,27 @@ target_include_directories(${CMAKE_PROJECT_NAME}
 
 set_target_properties(${PROJECT_NAME} PROPERTIES PUBLIC_HEADER "${EXPORTABLE_HEADERS}")
 
+# Set up installation folder, if does not exist already
 if (NOT CMAKE_INSTALL_PREFIX)
-  set(CMAKE_INSTALL_PREFIX ${CMAKE_CURRENT_SOURCE_DIR}/package/)
+  set(CMAKE_INSTALL_PREFIX ${CMAKE_CURRENT_SOURCE_DIR}/package)
 endif()
 
-message("Run \"make install\" to install the library binary and the header file in ${CMAKE_INSTALL_PREFIX}")
+message("CMake's configuration done. Now navigate to the CMake's build directory you have set up: ${CMAKE_BINARY_DIR}.")
+message("Once you navigate to the build directory, now you can:")
+message("Run \"make\" to build the library binary in ${CMAKE_BINARY_DIR}, with no further installation nor packaging.")
+message("Run \"make install\" to install the files in ${CMAKE_INSTALL_PREFIX}.")
+message("Run \"make package\" to pack the installation files in a distribution package, also in ${CMAKE_INSTALL_PREFIX}.")
+
+# Install log4embedded binary and header files in ${CMAKE_INSTALL_PREFIX}
 install(TARGETS ${CMAKE_PROJECT_NAME}
-                LIBRARY DESTINATION ${CMAKE_INSTALL_PREFIX}/${CMAKE_SYSTEM_NAME}-${CMAKE_SYSTEM_PROCESSOR}-package/${LIB_DIR}
-                PUBLIC_HEADER DESTINATION ${CMAKE_INSTALL_PREFIX}/${CMAKE_SYSTEM_NAME}-${CMAKE_SYSTEM_PROCESSOR}-package/${HDR_DIR})
+                LIBRARY DESTINATION ${LIB_DIR}
+                PUBLIC_HEADER DESTINATION ${HDR_DIR})
+
+# Install the license file in ${CMAKE_INSTALL_PREFIX}
+install(FILES 
+          ${CMAKE_CURRENT_SOURCE_DIR}/LICENSE 
+          ${CMAKE_CURRENT_SOURCE_DIR}/README.md 
+          DESTINATION .)
 
 target_link_libraries (${PROJECT_NAME} PRIVATE -lc)
 
@@ -77,3 +90,14 @@ target_link_libraries (${PROJECT_NAME} PRIVATE -lc)
 if (BUILD_EXAMPLES)
   add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/examples ${CMAKE_CURRENT_BINARY_DIR}/examples)
 endif()
+
+# Configure log4embedded package
+set(CPACK_PACKAGE_NAME ${PROJECT_NAME})
+set(CPACK_PACKAGE_VERSION "1.0.0")
+set(CPACK_PACKAGE_DIRECTORY ${CMAKE_INSTALL_PREFIX})
+set(CPACK_GENERATOR "TGZ")
+set(CPACK_PACKAGE_DESCRIPTION "Fast-performance, colorful log library for embedded systems")
+set(CPACK_PACKAGE_FILE_NAME ${CPACK_PACKAGE_NAME}-${CPACK_PACKAGE_VERSION}-${CMAKE_SYSTEM_NAME}-${CMAKE_SYSTEM_PROCESSOR})
+
+# Finally, include packaging option
+include(CPack)
